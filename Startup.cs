@@ -33,10 +33,10 @@ namespace PractikaASP
             {
                 app.UseDeveloperExceptionPage();
                 app.UseStatusCodePages();
-                //app.UseMiddleware<BrowserTypeMiddleware>();
-                //app.UseMiddleware<ShortCircuitMiddleware>();
-                //app.UseMiddleware<ContentMiddleware>();
-                //app.UseMiddleware<ErrorMiddleware>();
+                app.UseMiddleware<BrowserTypeMiddleware>();
+                app.UseMiddleware<ShortCircuitMiddleware>();
+                app.UseMiddleware<ContentMiddleware>();
+                app.UseMiddleware<ErrorMiddleware>();
             }
             else
                 app.UseExceptionHandler("/Home/Error");
@@ -44,6 +44,7 @@ namespace PractikaASP
             {
                 route.MapRoute(name:"default", template: "{controller=Home}/{action=Index}/{id?}");
             });
+            app.UseStaticFiles();
             //app.UseMvcWithDefaultRoute();
         }
     }
